@@ -86,6 +86,11 @@
         </copy>
     </target>
 
+    <target name="compile">
+        <mkdir dir="${dir.classes}"/>
+        <javac srcdir="${dir.src}" destdir="${dir.classes}"/>
+    </target>
+
     <target name="compileTest" depends="compile" description="compileTest">
         <javac srcdir="${test-src.dir}" destdir="${bin.dir}" classpathref="classpath" />
     </target>
