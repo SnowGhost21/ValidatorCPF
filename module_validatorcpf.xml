@@ -62,7 +62,7 @@
 
 
     <target name="compile.module.validatorcpf"
-            depends="compile.module.validatorcpf.production,tests"
+            depends="compile.module.validatorcpf.production,test"
             description="Compile module ValidatorCPF"/>
 
     <target name="compile.module.validatorcpf.production" depends="register.custom.compilers"
@@ -88,7 +88,7 @@
 
     <target name="test"
             depends="register.custom.compilers,compile.module.validatorcpf.production"
-            description="compile module ValidatorCPF; test classes" unless="skip.tests"/>
+            description="compile module ValidatorCPF; test classes" unless="skip.test"/>
 
     <target name="clean.module.validatorcpf" description="cleanup module">
         <delete dir="${validatorcpf.output.dir}"/>
