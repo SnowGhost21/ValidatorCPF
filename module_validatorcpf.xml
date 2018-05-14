@@ -86,6 +86,10 @@
         </copy>
     </target>
 
+    <target name="compileTest" depends="compile" description="compileTest">
+        <javac srcdir="${test-src.dir}" destdir="${bin.dir}" classpathref="classpath" />
+    </target>
+
     <target name="test" depends="compileTest">
         <junit>
             <classpath>
