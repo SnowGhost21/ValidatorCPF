@@ -4,7 +4,4 @@ jdk:
   - oraclejdk8
   - openjdk7
 
-script: ant test
-
-before_install:
-  - cd java
+script: junit test
