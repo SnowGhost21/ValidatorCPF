@@ -1,97 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="module_validatorcpf" default="compile.module.validatorcpf">
-    <dirname property="module.validatorcpf.basedir" file="${ant.file.module_validatorcpf}"/>
-
-    <property name="module.jdk.home.validatorcpf" value="${project.jdk.home}"/>
-    <property name="module.jdk.bin.validatorcpf" value="${project.jdk.bin}"/>
-    <property name="module.jdk.classpath.validatorcpf" value="${project.jdk.classpath}"/>
-
-    <property name="compiler.args.validatorcpf" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
-
-    <property name="validatorcpf.output.dir" value="${module.validatorcpf.basedir}/out/production/ValidatorCPF"/>
-    <property name="validatorcpf.testoutput.dir" value="${module.validatorcpf.basedir}/out/test/ValidatorCPF"/>
-
-    <path id="validatorcpf.module.bootclasspath">
-        <!-- Paths to be included in compilation bootclasspath -->
-    </path>
-
-    <path id="validatorcpf.module.production.classpath">
-        <path refid="${module.jdk.classpath.validatorcpf}"/>
-        <pathelement location="${idea.home}/lib/groovy-all-2.4.12.jar"/>
-        <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
-    </path>
-
-    <path id="validatorcpf.runtime.production.module.classpath">
-        <pathelement location="${validatorcpf.output.dir}"/>
-        <pathelement location="${idea.home}/lib/groovy-all-2.4.12.jar"/>
-        <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
-    </path>
-
-    <path id="validatorcpf.module.classpath">
-        <path refid="${module.jdk.classpath.validatorcpf}"/>
-        <pathelement location="${validatorcpf.output.dir}"/>
-        <pathelement location="${idea.home}/lib/groovy-all-2.4.12.jar"/>
-        <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
-    </path>
-
-    <path id="validatorcpf.runtime.module.classpath">
-        <pathelement location="${validatorcpf.testoutput.dir}"/>
-        <pathelement location="${validatorcpf.output.dir}"/>
-        <pathelement location="${idea.home}/lib/groovy-all-2.4.12.jar"/>
-        <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
-        <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
-    </path>
-
-
-    <patternset id="excluded.from.module.validatorcpf">
-        <patternset refid="ignored.files"/>
-    </patternset>
-
-    <patternset id="excluded.from.compilation.validatorcpf">
-        <patternset refid="excluded.from.module.validatorcpf"/>
-    </patternset>
-
-    <path id="validatorcpf.module.sourcepath">
-        <dirset dir="${module.validatorcpf.basedir}">
-            <include name="src"/>
-        </dirset>
-    </path>
-
-
-    <target name="compile.module.validatorcpf"
-            depends="compile.module.validatorcpf.production,test"
-            description="Compile module ValidatorCPF"/>
-
-    <target name="compile.module.validatorcpf.production" depends="register.custom.compilers"
-            description="Compile module ValidatorCPF; production classes">
-        <mkdir dir="${validatorcpf.output.dir}"/>
-        <javac2 destdir="${validatorcpf.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}"
-                memorymaximumsize="${compiler.max.memory}" fork="true"
-                executable="${module.jdk.bin.validatorcpf}/javac">
-            <compilerarg line="${compiler.args.validatorcpf}"/>
-            <bootclasspath refid="validatorcpf.module.bootclasspath"/>
-            <classpath refid="validatorcpf.module.production.classpath"/>
-            <src refid="validatorcpf.module.sourcepath"/>
-            <patternset refid="excluded.from.compilation.validatorcpf"/>
-        </javac2>
-
-        <copy todir="${validatorcpf.output.dir}">
-            <fileset dir="${module.validatorcpf.basedir}/src">
-                <patternset refid="compiler.resources"/>
-                <type type="file"/>
-            </fileset>
-        </copy>
-    </target>
-
-    <target name="test"
-            depends="register.custom.compilers,compile.module.validatorcpf.production"
-            description="compile module ValidatorCPF; test classes" unless="skip.test"/>
-
-    <target name="clean.module.validatorcpf" description="cleanup module">
-        <delete dir="${validatorcpf.output.dir}"/>
-        <delete dir="${validatorcpf.testoutput.dir}"/>
-    </target>
+  <dirname property="module.validatorcpf.basedir" file="${ant.file.module_validatorcpf}"/>
+  
+  <property name="module.jdk.home.validatorcpf" value="${project.jdk.home}"/>
+  <property name="module.jdk.bin.validatorcpf" value="${project.jdk.bin}"/>
+  <property name="module.jdk.classpath.validatorcpf" value="${project.jdk.classpath}"/>
+  
+  <property name="compiler.args.validatorcpf" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="validatorcpf.output.dir" value="${module.validatorcpf.basedir}/out/production/ValidatorCPF"/>
+  <property name="validatorcpf.testoutput.dir" value="${module.validatorcpf.basedir}/out/test/ValidatorCPF"/>
+  
+  <path id="validatorcpf.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="validatorcpf.module.production.classpath">
+    <path refid="${module.jdk.classpath.validatorcpf}"/>
+    <pathelement location="${idea.home}/lib/groovy-all-2.4.12.jar"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
+  
+  <path id="validatorcpf.runtime.production.module.classpath">
+    <pathelement location="${validatorcpf.output.dir}"/>
+    <pathelement location="${idea.home}/lib/groovy-all-2.4.12.jar"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
+  
+  <path id="validatorcpf.module.classpath">
+    <path refid="${module.jdk.classpath.validatorcpf}"/>
+    <pathelement location="${validatorcpf.output.dir}"/>
+    <pathelement location="${idea.home}/lib/groovy-all-2.4.12.jar"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
+  
+  <path id="validatorcpf.runtime.module.classpath">
+    <pathelement location="${validatorcpf.testoutput.dir}"/>
+    <pathelement location="${validatorcpf.output.dir}"/>
+    <pathelement location="${idea.home}/lib/groovy-all-2.4.12.jar"/>
+    <pathelement location="${idea.home}/lib/hamcrest-core-1.3.jar"/>
+    <pathelement location="${idea.home}/lib/junit-4.12.jar"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.validatorcpf">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.validatorcpf">
+    <patternset refid="excluded.from.module.validatorcpf"/>
+  </patternset>
+  
+  <path id="validatorcpf.module.sourcepath">
+    <dirset dir="${module.validatorcpf.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.validatorcpf" depends="compile.module.validatorcpf.production,test" description="Compile module ValidatorCPF"/>
+  
+  <target name="compile.module.validatorcpf.production" depends="register.custom.compilers" description="Compile module ValidatorCPF; production classes">
+    <mkdir dir="${validatorcpf.output.dir}"/>
+    <javac2 destdir="${validatorcpf.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" executable="${module.jdk.bin.validatorcpf}/javac">
+      <compilerarg line="${compiler.args.validatorcpf}"/>
+      <bootclasspath refid="validatorcpf.module.bootclasspath"/>
+      <classpath refid="validatorcpf.module.production.classpath"/>
+      <src refid="validatorcpf.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.validatorcpf"/>
+    </javac2>
+    
+    <copy todir="${validatorcpf.output.dir}">
+      <fileset dir="${module.validatorcpf.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="test" depends="register.custom.compilers,compile.module.validatorcpf.production" description="compile module ValidatorCPF; test classes" unless="skip.test"/>
+  
+  <target name="clean.module.validatorcpf" description="cleanup module">
+    <delete dir="${validatorcpf.output.dir}"/>
+    <delete dir="${validatorcpf.testoutput.dir}"/>
+  </target>
 </project>
