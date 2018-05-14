@@ -62,7 +62,7 @@
 
 
     <target name="compile.module.validatorcpf"
-            depends="compile.module.validatorcpf.production,compile.module.validatorcpf.tests"
+            depends="compile.module.validatorcpf.production,tests"
             description="Compile module ValidatorCPF"/>
 
     <target name="compile.module.validatorcpf.production" depends="register.custom.compilers"
@@ -86,31 +86,7 @@
         </copy>
     </target>
 
-    <target name="compile">
-        <mkdir dir="${dir.classes}"/>
-        <javac srcdir="${dir.src}" destdir="${dir.classes}"/>
-    </target>
-
-    <target name="compileTest" depends="compile" description="compileTest">
-        <javac srcdir="${test-src.dir}" destdir="${bin.dir}" classpathref="classpath" />
-    </target>
-
-    <target name="test" depends="compileTest">
-        <junit>
-            <classpath>
-                <pathelement location="bin"/>
-                <pathelement location="lib/junit-4.12.jar"/>
-            </classpath>
-            <batchtest>
-                <fileset dir="${test}">
-                    <include name="**/*Test*"/>
-                </fileset>
-            </batchtest>
-            <formatter type="brief" usefile="false"/>
-        </junit>
-    </target>
-
-    <target name="compile.module.validatorcpf.tests"
+    <target name="tests"
             depends="register.custom.compilers,compile.module.validatorcpf.production"
             description="compile module ValidatorCPF; test classes" unless="skip.tests"/>
 
