@@ -86,7 +86,7 @@
         </copy>
     </target>
 
-    <target name="tests"
+    <target name="test"
             depends="register.custom.compilers,compile.module.validatorcpf.production"
             description="compile module ValidatorCPF; test classes" unless="skip.tests"/>
 
