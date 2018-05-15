@@ -31,11 +31,8 @@
             </classpath>
 
             <batchtest>
-                <fileset dir="test.java">
-                    <include name="**/*Test*" />
-                </fileset>
+                <fileset dir="src/test" includes="**/Test*.class" />
             </batchtest>
-            <formatter type="brief" usefile="false"/>
         </junit>
     </target>
 </project>
