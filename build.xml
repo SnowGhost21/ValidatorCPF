@@ -30,7 +30,12 @@
                 <pathelement location="${test.build.dir}"/>
             </classpath>
 
-            <test name="test.java.MainTest" />
+            <batchtest>
+                <fileset dir="${test.build.dir}">
+                    <include name="**/*Test.*" />
+                </fileset>
+            </batchtest>
+            <formatter type="brief" usefile="false"/>
         </junit>
     </target>
 </project>
