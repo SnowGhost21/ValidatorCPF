@@ -1,13 +1,15 @@
-package test.java;
-
-import main.java.Main;
+import application.Main;
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class MainTest {
 
-    Main main = new Main();
-
+    private Main main = null;
+    @Before
+    public void setup() {
+        main = new Main();
+    }
     @Test
     public void isInstanceNotNull() {
         Assert.assertNotNull(main);

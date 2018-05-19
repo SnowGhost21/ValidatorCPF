@@ -1,0 +1,1 @@
+web: java -Dserver.port=$PORT $JAVa_OPTS -jar target/ValidatorCPF-1.0-SNAPSHOT.jar
