@@ -1,5 +1,3 @@
-package main.java;
-
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.stereotype.Controller;
@@ -7,9 +5,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import java.util.Scanner;
-
-@Controller
 @EnableAutoConfiguration
 public class Main {
 
@@ -71,37 +66,6 @@ public class Main {
         int rest2 = sum2 % 11;
         int secondDigit = Character.getNumericValue(value.charAt(10));
         return rest == firstDigit && rest2 == secondDigit;
-    }
-
-    @RequestMapping(value = "/validate", method = RequestMethod.POST, produces = "text/plain")
-    @ResponseBody
-    public String validateCpf(String value) {
-        if (!isNotNullCPF(value)) {
-            return "CPF não pode ser nulo";
-        }
-
-        if (!isCPFOnlyNumbers(value)) {
-            return "CPF deve conter apenas numeros";
-        }
-
-        if (!isSizeValid(value)) {
-            return "CPF deve conter 11 numeros";
-        }
-
-        if (isContainsOnlySameValue(value)) {
-            return "CPF inválido, informe um valor correto e tente novamente";
-        }
-
-        if (isDigitsValid(value)) {
-            return "CPF válido!";
-        }
-
-        return "Erro na validação, tente novamente";
-    }
-
-    @RequestMapping(value = "/")
-    public String index() {
-        return String.format("Greetings from Spring Boot!\nValidator CPF mode.\n Current status is Ok!");
     }
 
     public static void main(String args[]) {
