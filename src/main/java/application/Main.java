@@ -1,7 +1,11 @@
-package main.java;
+package application;
 
-import java.util.Scanner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.ComponentScan;
 
+@SpringBootApplication
 public class Main {
 
     private static final int CPF_SIZE = 11;
@@ -64,39 +68,7 @@ public class Main {
         return rest == firstDigit && rest2 == secondDigit;
     }
 
-    private String validateCpf(String value) {
-        if (!isNotNullCPF(value)) {
-            return "CPF não pode ser nulo";
-        }
-
-        if (!isCPFOnlyNumbers(value)) {
-            return "CPF deve conter apenas numeros";
-        }
-
-        if (!isSizeValid(value)) {
-            return "CPF deve conter 11 numeros";
-        }
-
-        if (isContainsOnlySameValue(value)) {
-            return "CPF inválido, informe um valor correto e tente novamente";
-        }
-
-        if (isDigitsValid(value)) {
-            return "CPF válido!";
-        }
-
-        return "Erro na validação, tente novamente";
-    }
-
     public static void main(String args[]) {
-        Scanner in = new Scanner(System.in);
-        Main validator = new Main();
-
-        System.out.println("Informe o cpf desejado:");
-
-        String cpf = in.next();
-        String response = validator.validateCpf(cpf);
-
-        System.out.println(response);
+        SpringApplication.run(Main.class, args);
     }
 }
