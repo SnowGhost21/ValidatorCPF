@@ -75,7 +75,7 @@ public class Main {
 
     @RequestMapping(value = "/validate", method = RequestMethod.POST, produces = "text/plain")
     @ResponseBody
-    private String validateCpf(String value) {
+    public String validateCpf(String value) {
         if (!isNotNullCPF(value)) {
             return "CPF não pode ser nulo";
         }
@@ -97,6 +97,11 @@ public class Main {
         }
 
         return "Erro na validação, tente novamente";
+    }
+
+    @RequestMapping(value = "/")
+    public String index() {
+        return String.format("Greetings from Spring Boot!\nValidator CPF mode.\n Current status is Ok!");
     }
 
     public static void main(String args[]) {
