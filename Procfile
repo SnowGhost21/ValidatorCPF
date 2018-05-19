@@ -1,1 +1,1 @@
-web:    java $JAVA_OPTS -jar target/ValidatorCPF-1.0-SNAPSHOT
+web: java -jar target/ValidatorCPF-1.0-SNAPSHOT
