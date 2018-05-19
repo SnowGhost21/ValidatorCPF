@@ -1,5 +1,3 @@
-package test.java;
-
 import main.java.Main;
 import org.junit.Assert;
 import org.junit.Before;
