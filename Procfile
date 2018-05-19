@@ -1,1 +1,1 @@
-web: java -jar target/ValidatorCPF-1.0-SNAPSHOT
+web: java -cp target/classes:target/dependency/* Main
