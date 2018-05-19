@@ -1,7 +1,16 @@
 package main.java;
 
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
+
 import java.util.Scanner;
 
+@Controller
+@EnableAutoConfiguration
 public class Main {
 
     private static final int CPF_SIZE = 11;
@@ -64,6 +73,8 @@ public class Main {
         return rest == firstDigit && rest2 == secondDigit;
     }
 
+    @RequestMapping(value = "/validate", method = RequestMethod.POST, produces = "text/plain")
+    @ResponseBody
     private String validateCpf(String value) {
         if (!isNotNullCPF(value)) {
             return "CPF não pode ser nulo";
@@ -89,14 +100,6 @@ public class Main {
     }
 
     public static void main(String args[]) {
-        Scanner in = new Scanner(System.in);
-        Main validator = new Main();
-
-        System.out.println("Informe o cpf desejado:");
-
-        String cpf = in.next();
-        String response = validator.validateCpf(cpf);
-
-        System.out.println(response);
+        SpringApplication.run(Main.class, args);
     }
 }
