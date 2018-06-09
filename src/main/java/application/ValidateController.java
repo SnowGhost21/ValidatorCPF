@@ -1,10 +1,13 @@
 package application;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 @RestController
 public class ValidateController {
@@ -39,5 +42,12 @@ public class ValidateController {
         }
 
         return "Erro na validação, tente novamente";
+    }
+
+    @RequestMapping(value = "/validate/{cpf}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+    public Map<String, String> validateWithGet(@PathVariable("cpf") String cpf) {
+        LinkedHashMap<String, String> response = new LinkedHashMap<>();
+        response.put("response", validateCpf(cpf));
+        return response;
     }
 }
